@@ -18,7 +18,8 @@ import com.sparta.myselectshop.security.UserDetailsImpl;
 import com.sparta.myselectshop.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -38,14 +39,15 @@ public class ProductController {
     
     @GetMapping("/products")
     public Page<ProductResponseDto> getProducts(
-            @RequestParam("page") int page,
-            @RequestParam("size") int size,
-            @RequestParam("sortBy") String sortBy,
-            @RequestParam("isAsc") boolean isAsc,
-            @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        @RequestParam("page") int page,
+        @RequestParam("size") int size,
+        @RequestParam("sortBy") String sortBy,
+        @RequestParam("isAsc") boolean isAsc,
+        @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
         return productService.getProducts(userDetails.getUser(), page-1, size, sortBy, isAsc);
     }
-
+    
     @PostMapping("/products/{productId}/folder")
     public void addFolder(
         @PathVariable Long productId, 
@@ -53,6 +55,26 @@ public class ProductController {
         @AuthenticationPrincipal UserDetailsImpl userDetails
     ) {
         productService.addFolder(productId, folderId, userDetails.getUser());
+    }
+        
+    @GetMapping("/forders/{forderId}/products")
+    public Page<ProductResponseDto> getProductsInFolder(
+        @PathVariable Long folderId,
+        @RequestParam("page") int page,
+        @RequestParam("size") int size,
+        @RequestParam("sortBy") String sortBy,
+        @RequestParam("isAsc") boolean isAsc,
+        @AuthenticationPrincipal UserDetailsImpl userDetails
+        ) {
+            log.info("폴더 조회 Controller ");
+        return productService.getProductsInFolder(
+            folderId, 
+            page-1, 
+            size, 
+            sortBy, 
+            isAsc, 
+            userDetails.getUser()
+        );
     }
     
 
