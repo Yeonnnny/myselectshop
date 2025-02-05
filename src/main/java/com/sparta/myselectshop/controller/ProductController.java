@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 
 @RestController
@@ -33,6 +39,10 @@ public class ProductController {
         return productService.updateProduct(id, requestDto);
     }
     
+    @GetMapping("/products")
+    public List<ProductResponseDto> getProducts() {
+        return productService.getProducts();
+    }
     
 
 }

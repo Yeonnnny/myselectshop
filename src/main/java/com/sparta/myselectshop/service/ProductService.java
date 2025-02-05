@@ -1,5 +1,8 @@
 package com.sparta.myselectshop.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +38,17 @@ public class ProductService {
         );
         product.update(requestDto);
         return new ProductResponseDto(product);
+    }
+
+    public List<ProductResponseDto> getProducts() {
+        List<Product> porductList = productRepository.findAll();
+        List<ProductResponseDto> responseDtoList = new ArrayList<>();
+
+        for (Product product : porductList) {
+            responseDtoList.add(new ProductResponseDto(product));
+        }
+        
+        return responseDtoList;
     }
 
     
