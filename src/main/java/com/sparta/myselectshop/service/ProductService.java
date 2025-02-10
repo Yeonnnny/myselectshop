@@ -2,6 +2,7 @@ package com.sparta.myselectshop.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import com.sparta.myselectshop.repository.FolderRepository;
 import com.sparta.myselectshop.repository.ProductFolderRepository;
 import com.sparta.myselectshop.repository.ProductRepository;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +39,7 @@ public class ProductService {
     public static final int MIN_MY_PRICE = 100;
 
     // 테스트 시 사용
+    @Autowired
     public ProductService(ProductRepository productRepository2, ProductFolderRepository productFolderRepository2,
             FolderRepository folderRepository2) {
         this.productRepository = productRepository2;

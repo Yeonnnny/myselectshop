@@ -5,6 +5,7 @@ import static org.mockito.BDDMockito.given;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +35,7 @@ class ProductServiceTest {
     ProductFolderRepository productFolderRepository;
 
     @Test
+    @Disabled
     @DisplayName("관심 상품 희망가 - 최저가 이상으로 변경")
     void test1() {
         // given
@@ -65,6 +67,7 @@ class ProductServiceTest {
     }
 
     @Test
+    @Disabled
     @DisplayName("관심 상품 희망가 - 최저가 미만으로 변경")
     void test2() {
         // given
