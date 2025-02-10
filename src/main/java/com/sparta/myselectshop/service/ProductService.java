@@ -36,6 +36,14 @@ public class ProductService {
 
     public static final int MIN_MY_PRICE = 100;
 
+    // 테스트 시 사용
+    public ProductService(ProductRepository productRepository2, ProductFolderRepository productFolderRepository2,
+            FolderRepository folderRepository2) {
+        this.productRepository = productRepository2;
+        this.productFolderRepository = productFolderRepository2;
+        this.folderRepository = folderRepository2;
+    }
+
     public ProductResponseDto createProduct(ProductRequestDto requestDto, User user) {
         Product product = productRepository.save(new Product(requestDto, user));
         return new ProductResponseDto(product);
@@ -118,8 +126,6 @@ public class ProductService {
         
         return responseDtoList;
     }
-
-
     
 
 }
